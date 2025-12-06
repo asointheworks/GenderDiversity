@@ -11,13 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Bannerlord Reference Assemblies from NuGet -->
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.Core" Version="1.3.4.*" PrivateAssets="all" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.Native" Version="1.3.4.*" PrivateAssets="all" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.SandBox" Version="1.3.4.*" PrivateAssets="all" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.SandBoxCore" Version="1.3.4.*" PrivateAssets="all" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.StoryMode" Version="1.3.4.*" PrivateAssets="all" />
-    <PackageReference Include="Bannerlord.ReferenceAssemblies.CustomBattle" Version="1.3.4.*" PrivateAssets="all" />
+    <!-- Single meta-package that includes all Bannerlord assemblies -->
+    <PackageReference Include="Bannerlord.ReferenceAssemblies" Version="1.2.12.77991" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
