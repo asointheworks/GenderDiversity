@@ -45,4 +45,4 @@ dotnet build --configuration Release
 
 ## License
 
-MIT License
+GNL
