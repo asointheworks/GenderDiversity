@@ -45,4 +45,4 @@ dotnet build --configuration Release
 
 ## License
 
-GNL
+GPL-3.0 license
