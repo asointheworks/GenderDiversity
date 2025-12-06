@@ -1,0 +1,39 @@
+name: Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+    
+    - name: Restore dependencies
+      run: dotnet restore
+    
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    
+    - name: Package mod
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Force -Path "package/GenderDiversity/bin/Win64_Shipping_Client"
+        Copy-Item "bin/x64/Release/net472/GenderDiversity.dll" "package/GenderDiversity/bin/Win64_Shipping_Client/"
+        Copy-Item "_Module/SubModule.xml" "package/GenderDiversity/"
+        
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: GenderDiversity-v${{ github.run_number }}
+        path: package/
