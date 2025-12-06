@@ -25,11 +25,13 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     
-    - name: Package mod
+    - name: Find and package mod
       shell: pwsh
       run: |
+        $dll = Get-ChildItem -Recurse -Filter "GenderDiversity.dll" | Select-Object -First 1
+        Write-Host "Found DLL at: $($dll.FullName)"
         New-Item -ItemType Directory -Force -Path "package/GenderDiversity/bin/Win64_Shipping_Client"
-        Copy-Item "bin/x64/Release/net472/GenderDiversity.dll" "package/GenderDiversity/bin/Win64_Shipping_Client/"
+        Copy-Item $dll.FullName "package/GenderDiversity/bin/Win64_Shipping_Client/"
         Copy-Item "_Module/SubModule.xml" "package/GenderDiversity/"
         
     - name: Upload artifact
