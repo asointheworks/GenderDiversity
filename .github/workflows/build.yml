@@ -23,19 +23,32 @@ jobs:
       run: dotnet restore
     
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore -p:Platform=x64
     
-    - name: Find and package mod
-      shell: pwsh
+    - name: Prepare artifact
       run: |
-        $dll = Get-ChildItem -Recurse -Filter "GenderDiversity.dll" | Select-Object -First 1
-        Write-Host "Found DLL at: $($dll.FullName)"
-        New-Item -ItemType Directory -Force -Path "package/GenderDiversity/bin/Win64_Shipping_Client"
-        Copy-Item $dll.FullName "package/GenderDiversity/bin/Win64_Shipping_Client/"
-        Copy-Item "_Module/SubModule.xml" "package/GenderDiversity/"
+        mkdir -p artifact/EveryoneFights/bin/Win64_Shipping_Client
         
+        # Debug: show what was built
+        echo "=== Build output ==="
+        find bin -name "*.dll" 2>/dev/null || ls -la bin/
+        
+        # Copy DLL
+        if [ -f "bin/x64/Release/net472/EveryoneFights.dll" ]; then
+          cp bin/x64/Release/net472/EveryoneFights.dll artifact/EveryoneFights/bin/Win64_Shipping_Client/
+          echo "DLL copied successfully"
+        else
+          echo "ERROR: DLL not found at expected path"
+          echo "Searching for any EveryoneFights.dll..."
+          find . -name "EveryoneFights.dll" -type f
+          exit 1
+        fi
+        
+        cp _Module/SubModule.xml artifact/EveryoneFights/
+      shell: bash
+    
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: GenderDiversity-v${{ github.run_number }}
-        path: package/
+        name: EveryoneFights
+        path: artifact/
