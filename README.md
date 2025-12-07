@@ -1,48 +1,31 @@
-# Gender Diversity
+# Everyone Fights
 
-A simple Mount & Blade II: Bannerlord mod that allows women to be recruited and trained as soldiers throughout Calradia.
+A Mount & Blade II: Bannerlord mod that enables gender diversity in armies.
 
 ## Features
 
-- **Configurable percentage**: Set the chance (0-100%) for troops to spawn as female
-- **Lore-friendly exceptions**: Optionally keep historically male-only units (Skolderbroda, Ghilman) as male
-- **No new troops added**: Works with existing troop trees, compatible with other mods
-- **Safe to add/remove**: Does not modify save files
+- Troops can appear as female based on configurable percentage
+- Works in battles, party screen, recruitment, and encyclopedia
+- Configurable via MCM settings
+- Lore-friendly option to keep Skolderbroda and Ghilman male-only
 
 ## Requirements
 
 - Bannerlord 1.2.x or later
-- [Harmony](https://www.nexusmods.com/mountandblade2bannerlord/mods/2006)
-- [ButterLib](https://www.nexusmods.com/mountandblade2bannerlord/mods/2018)
-- [Mod Configuration Menu (MCM)](https://www.nexusmods.com/mountandblade2bannerlord/mods/612)
+- Harmony 2.3.0+
+- ButterLib 2.9.0+
+- MCM 5.10.0+
 
 ## Installation
 
-1. Download the latest release
-2. Extract to your `Modules` folder
-3. Enable in the launcher (load after MCM)
+1. Download the latest release from the Actions tab
+2. Extract `EveryoneFights` folder to your `Modules` directory
+3. Enable in launcher after Harmony, ButterLib, and MCM
 
-## Configuration
+## Troubleshooting
 
-Open Mod Options in-game to configure:
-
-- **Enable Gender Diversity**: Toggle the mod on/off
-- **Female Troop Percentage**: 0-100% chance for troops to be female (default: 50%)
-- **Lore-Friendly Exceptions**: Keep certain units male-only (default: enabled)
-
-## Compatibility
-
-- Compatible with War Sails DLC
-- Compatible with troop overhaul mods
-- May conflict with other gender modification mods
-
-## Building from Source
-
-```bash
-dotnet restore
-dotnet build --configuration Release
-```
+Check `Documents/Mount and Blade II Bannerlord/EveryoneFights.log` for patch diagnostic info.
 
 ## License
 
-GPL-3.0 license
+MIT
